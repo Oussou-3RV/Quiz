@@ -3,8 +3,8 @@
     <h1>{{ quizGeneral.title }}</h1>
     <Progress :valeur="stepInitial" :max="quizGeneral.questions.length-1"/>
     <Question :question="currentQuestion" :key="currentQuestion.question" v-if="state === 'modeQuestion'" @answerr="addAnswer" />
-    <Recap v-if="state =='modeRecap'"/> 
-    {{ answers }}
+    <Recap v-if="state =='modeRecap'" :answers="answers" :quizG="quizGeneral"/> 
+   
     
    </div>
 </template>
