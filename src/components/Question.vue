@@ -3,12 +3,11 @@
         <h3>{{ question.question }}</h3>
         <ul>
             <li v-for="(choice,index) in RandomTable" :key="choice" >
-                <Answer :id="`answer${index}`" :disabled="hasAnswer" :value="choice" v-model="answer"/>
-
-                <!-- <label :for="`answer${index}`">
-                    <input type="radio" :id="`answer${index}`" name="answer" v-model="answer" :value="choice" :disabled="hasAnswer">
-                    {{ choice }}
-                </label> -->
+                <Answer :id="`answer${index}`"
+                 :disabled="hasAnswer"
+                 :value="choice"
+                  v-model="answer"
+                  :correct_answer="question.correct_answer"/>
             </li>
         </ul>
         <button :disabled="!hasAnswer" @click="emits('answerr',answer)">Question suivante</button>
