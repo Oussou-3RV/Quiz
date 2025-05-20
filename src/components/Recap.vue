@@ -14,7 +14,7 @@ const props = defineProps({
     answers:Array
 })
 
-const score =  computed(()=>{
+const score =  computed(() => {
     return props.quizG.questions.reduce((acc, question, k) => {
         if(question.correct_answer === props.answers[k])
             return acc+1

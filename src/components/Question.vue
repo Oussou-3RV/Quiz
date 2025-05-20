@@ -2,11 +2,13 @@
     <div class="question">
         <h3>{{ question.question }}</h3>
         <ul>
-            <li v-for="(choice,index) in question.choices" :key="choice">
-                <label :for="`answer${index}`">
-                    <input type="radio" :id="`answer${index}`" name="answer" v-model="answer" :value="choice">
+            <li v-for="(choice,index) in RandomTable" :key="choice" >
+                <Answer :id="`answer${index}`" :disabled="hasAnswer" :value="choice" v-model="answer"/>
+
+                <!-- <label :for="`answer${index}`">
+                    <input type="radio" :id="`answer${index}`" name="answer" v-model="answer" :value="choice" :disabled="hasAnswer">
                     {{ choice }}
-                </label>
+                </label> -->
             </li>
         </ul>
         <button :disabled="!hasAnswer" @click="emits('answerr',answer)">Question suivante</button>
@@ -15,16 +17,21 @@
 </template>
 
 <script setup>
+import { shuffleArray } from '@/functions/Arrays';
 import { computed, ref } from 'vue';
+import Answer from './Answer.vue';
 
-defineProps({
+
+const props = defineProps({
     question:Object
 })
 
 const answer = ref(null)
 const hasAnswer = computed(() => answer.value != null)
-//crée un évènement qui detecte qd une réponse est séléctionnée
+//crée un évènement qui detecte qd une réponse est séléctionnée et active le btn Question suivante
 const emits = defineEmits(['answerr'])
+
+const RandomTable = computed(() => shuffleArray(props.question.choices)) 
 
 
 </script>

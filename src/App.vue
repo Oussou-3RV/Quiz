@@ -6,7 +6,7 @@
     <p> Impossible de charger le json ! </p>
   </div>
 
-  <div :="state === 'loading'">
+  <div :aria-busy="state === 'loading'">
     <Quiz :quizGeneral="quiz" v-if="quiz!= null"/>
   </div>
 
@@ -24,7 +24,7 @@ const state = ref('loading')
 
 onMounted(() => {
   fetch('/quiz.json')
-  .then(r =>{
+  .then(r => {
     if(r.ok)
         return r.json()
     else
