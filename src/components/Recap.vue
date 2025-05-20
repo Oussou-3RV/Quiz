@@ -1,5 +1,5 @@
 <template>
-    <h1>recapitulatif</h1>
+    <h1>recap</h1>
     <p>
         Score : {{ score }} / {{quizG.questions.length}} 
     </p>
